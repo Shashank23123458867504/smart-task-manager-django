@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Task Form{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow rounded-4">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4">Create / Update Task</h2>
+
+                <form method="POST">
+    {% csrf_token %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Please fix the errors below:</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    {{ form.as_p }}
+
+    <a href="{% url 'create_category' %}">Add New Category</a>
+    <button type="submit" class="btn btn-success w-100">Save Task</button>
+</form>
+
+                <div class="text-center mt-3">
+                    <a href="{% url 'task_list' %}" class="btn btn-secondary">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

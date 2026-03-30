@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Tasks{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Your Tasks</h2>
+
+<div class="mb-3">
+    <a href="{% url 'create_task' %}" class="btn btn-primary">+ Add Task</a>
+</div>
+
+<div class="card shadow rounded-4">
+    <div class="card-body">
+        {% if tasks %}
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>
+                            {% if task.category %}
+                                {{ task.category.name }}
+                            {% else %}
+                                <span class="text-muted">No Category</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ task.get_priority_display }}</td>
+                        <td>{{ task.get_status_display }}</td>
+                        <td>
+                            {% if task.due_date %}
+                                {{ task.due_date }}
+                            {% else %}
+                                <span class="text-muted">No Due Date</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'update_task' task.pk %}" class="btn btn-warning btn-sm">Edit</a>
+
+                            <form method="POST" action="{% url 'delete_task' task.pk %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-muted">No tasks yet. Start by adding one!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
