@@ -80,3 +80,14 @@ SmartTaskManager/
 ├── manage.py
 ├── .gitignore
 └── README.md
+```
+
+---
+
+## Future Improvements
+- Task filtering by priority and status
+- Dashboard analytics
+- Search functionality
+- Deployment on Render/PythonAnywhere
+- Better UI enhancements
+
