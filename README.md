@@ -7,6 +7,20 @@ This project allows users to register, log in, manage their profile, create cate
 
 ## 🚀 Features
 
+## 📸 Screenshots
+
+### Register Page
+![Register](screenshots/register.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Task Form
+![Task Form](screenshots/taskform.png)
+
+### Task List
+![Task List](screenshots/task_list.png)
+
 ### 🔐 Authentication
 - User Registration
 - User Login
